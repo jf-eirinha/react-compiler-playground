@@ -5,7 +5,10 @@ import pluginObj from "./plugin";
 
 const INPUT_FILE_PATH = "input.js";
 
-function compile(input: string, plugin: BabelCore.PluginObj<any>) {
+function compile(
+  input: string,
+  plugin: BabelCore.PluginObj<any>
+): BabelCore.BabelFileResult | null {
   const ast = BabelParser.parse(input, {
     sourceFilename: INPUT_FILE_PATH,
     plugins: ["typescript"],
@@ -26,7 +29,7 @@ function main() {
 
   const result = compile(input, pluginObj);
 
-  console.log(result);
+  console.log(result?.code);
 }
 
 main();
